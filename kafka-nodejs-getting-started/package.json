@@ -1,0 +1,17 @@
+{
+  "name": "kafka-nodejs-getting-started",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "producer": "node ./producer.js",
+    "consumer": "node ./consumer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ip": "^1.1.8",
+    "kafkajs": "^2.2.4"
+  }
+}
