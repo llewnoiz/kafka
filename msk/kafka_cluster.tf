@@ -9,7 +9,7 @@ module "msk_cluster" {
 
   name                   = local.name
   kafka_version          = "3.4.0"
-  number_of_broker_nodes = 1
+  number_of_broker_nodes = 2
 
   broker_node_client_subnets  = module.vpc.private_subnets
   broker_node_instance_type   = "kafka.t3.small"
