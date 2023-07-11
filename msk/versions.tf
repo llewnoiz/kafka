@@ -9,10 +9,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = local.tfstate_bucket
-    key            = local.tfstate_key
-    region         = local.region
-    dynamodb_table = local.terraform_state_lock
+    bucket         = "amano-dev-tfstate"
+    key            = "terraform.tfstate"
+    region         = "ap-northeast-2"
+    dynamodb_table = "amano-dev-state-lock"
     encrypt        = true
   }
 }
