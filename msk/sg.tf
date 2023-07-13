@@ -6,7 +6,7 @@ module "security_group" {
   description = "Security group for ${local.name}"
   vpc_id      = module.vpc.vpc_id
 
-  ingress_cidr_blocks = module.vpc.private_subnets_cidr_blocks
+  ingress_cidr_blocks = module.vpc.public_subnets_cidr_blocks
   ingress_rules = [
     "kafka-broker-tcp",
     "kafka-broker-tls-tcp"

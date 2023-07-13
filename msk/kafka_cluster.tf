@@ -11,7 +11,7 @@ module "msk_cluster" {
   kafka_version          = "3.4.0"
   number_of_broker_nodes = 2
 
-  broker_node_client_subnets  = module.vpc.private_subnets
+  broker_node_client_subnets  = module.vpc.public_subnets
   broker_node_instance_type   = "kafka.t3.small"
   broker_node_security_groups = [module.security_group.security_group_id]
 

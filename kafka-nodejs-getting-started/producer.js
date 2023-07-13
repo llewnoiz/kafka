@@ -6,7 +6,8 @@ const host = process.env.HOST_IP || ip.address()
 
 const kafka = new Kafka({
   logLevel: logLevel.DEBUG,
-  brokers: [`${host}:9092`],
+  // brokers: [`${host}:9092`],
+  brokers:["b-1.amanomsk.y098eb.c4.kafka.ap-northeast-2.amazonaws.com:9094","b-2.amanomsk.y098eb.c4.kafka.ap-northeast-2.amazonaws.com:9094"],
   clientId: 'example-producer',
 })
 
