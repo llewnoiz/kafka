@@ -27,6 +27,7 @@ module "msk_cluster" {
   configuration_server_properties = {
     "auto.create.topics.enable" = true
     "delete.topic.enable"       = true
+    "allow.everyone.if.no.acl.found" = false
   }
 
   create_scram_secret_association          = true
