@@ -29,6 +29,6 @@ variable "terraform_state_lock" {
 }
 
 variable "tfstate_key" {
-    default = "terraform.tfstate"
+    default = "msk.tfstate"
     type = string
 }

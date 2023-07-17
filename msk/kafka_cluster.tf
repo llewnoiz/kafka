@@ -8,7 +8,7 @@ module "msk_cluster" {
   source = "./modules/terraform-aws-msk-kafka-cluster"
 
   name                   = local.name
-  kafka_version          = "3.4.0"
+  kafka_version          = "2.8.1"
   number_of_broker_nodes = 2
 
   broker_node_client_subnets  = module.vpc.public_subnets
@@ -21,7 +21,9 @@ module "msk_cluster" {
 
   encryption_in_transit_client_broker = "TLS"
   encryption_in_transit_in_cluster    = true
-
+  broker_node_connectivity_info = {
+    public_access = { type = local.public_access }
+  }
   configuration_name        = "${local.name}-configuration"
   configuration_description = "${local.name} configuration"
   configuration_server_properties = {

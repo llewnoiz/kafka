@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket         = "amano-dev-tfstate"
-    key            = "terraform.tfstate"
+    key            = "msk.tfstate"
     region         = "ap-northeast-2"
     dynamodb_table = "amano-dev-state-lock"
     encrypt        = true
