@@ -8,8 +8,10 @@ module "security_group" {
 
   ingress_cidr_blocks = module.vpc.public_subnets_cidr_blocks
   ingress_rules = [
-    "kafka-broker-tcp",
-    "kafka-broker-tls-tcp"
+    "kafka-broker-sasl-scram-tcp",
+    "kafka-broker-sasl-scram-public-tcp",
+    "kafka-jmx-exporter-tcp",
+    "kafka-node-exporter-tcp"
   ]
   tags = local.tags
 }
