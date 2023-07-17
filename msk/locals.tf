@@ -8,7 +8,7 @@ locals {
   azs      = slice(data.aws_availability_zones.available.names, 0, 2)
 
   secrets = ["producer", "consumer"]
-  public_access = "SERVICE_PROVIDED_EIPS" #DISABLED
+  public_access = var.public_access #"SERVICE_PROVIDED_EIPS" #DISABLED
   tfstate_bucket = var.tfstate_bucket
   terraform_state_lock = var.terraform_state_lock
   tfstate_key = var.tfstate_key

@@ -32,3 +32,8 @@ variable "tfstate_key" {
     default = "msk.tfstate"
     type = string
 }
+
+variable "public_access" {
+    default = "SERVICE_PROVIDED_EIPS" #DISABLED
+    type = string
+}
