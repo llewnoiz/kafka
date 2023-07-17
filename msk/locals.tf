@@ -7,6 +7,7 @@ locals {
   vpc_cidr = var.vpc_cidr
   azs      = slice(data.aws_availability_zones.available.names, 0, 2)
 
+  secrets = ["producer", "consumer"]
   tfstate_bucket = var.tfstate_bucket
   terraform_state_lock = var.terraform_state_lock
   tfstate_key = var.tfstate_key
