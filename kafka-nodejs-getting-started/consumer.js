@@ -3,11 +3,19 @@ const ip = require('ip')
 const { Kafka, logLevel } = require('kafkajs')
 
 const host = process.env.HOST_IP || ip.address()
+const br = ["b-2-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196","b-1-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196"];
 
 const kafka = new Kafka({
   logLevel: logLevel.INFO,
-  brokers: [`${host}:9092`],
-  clientId: 'example-consumer',
+  // brokers: [`${host}:9092`],
+  brokers: br,
+  clientId: 'producer',
+  // ssl: true,
+  sasl: {
+    mechanism: 'plain', // scram-sha-256 or scram-sha-512
+    username: 'consumer',
+    password: 'consumer123!'
+  },
 })
 
 const topic = 'topic-test'

@@ -1,18 +1,26 @@
 const ip = require('ip')
 
 const { Kafka, CompressionTypes, logLevel } = require('kafkajs')
-
+const { Partitioners } = require('kafkajs')
 const host = process.env.HOST_IP || ip.address()
 
+const br = ["b-2-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196","b-1-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196"];
+
 const kafka = new Kafka({
-  logLevel: logLevel.DEBUG,
+  logLevel: logLevel.INFO,
   // brokers: [`${host}:9092`],
-  brokers:["b-1.amanomsk.y098eb.c4.kafka.ap-northeast-2.amazonaws.com:9094","b-2.amanomsk.y098eb.c4.kafka.ap-northeast-2.amazonaws.com:9094"],
-  clientId: 'example-producer',
+  brokers: br,
+  clientId: 'producer',
+  // ssl: true,
+  sasl: {
+    mechanism: 'plain', // scram-sha-256 or scram-sha-512
+    username: 'producer',
+    password: 'producer123!'
+  },
 })
 
 const topic = 'topic-test'
-const producer = kafka.producer()
+const producer = kafka.producer({ createPartitioner: Partitioners.LegacyPartitioner })
 
 const getRandomNumber = () => Math.round(Math.random(10) * 1000)
 const createMessage = num => ({
