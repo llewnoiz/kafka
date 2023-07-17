@@ -3,7 +3,7 @@ const ip = require('ip')
 const { Kafka, logLevel } = require('kafkajs')
 
 const host = process.env.HOST_IP || ip.address()
-const br = ["b-2-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196","b-1-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196"];
+const br = ["b-1-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196","b-2-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196"];
 
 const kafka = new Kafka({
   logLevel: logLevel.INFO,

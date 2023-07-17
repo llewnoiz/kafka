@@ -12,6 +12,7 @@ module "security_group" {
     "kafka-broker-sasl-scram-public-tcp",
     "kafka-jmx-exporter-tcp",
     "kafka-node-exporter-tcp"
-  ]
+  ]  
+  egress_rules = [ "all-all" ]
   tags = local.tags
 }
