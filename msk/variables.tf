@@ -37,3 +37,13 @@ variable "public_access" {
     default = "SERVICE_PROVIDED_EIPS" #DISABLED
     type = string
 }
+
+variable "connector_external_url" {
+    default = "https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/2.3.0.Final/debezium-connector-mysql-2.3.0.Final-plugin.tar.gz"
+    type = string
+}
+
+variable "connector" {
+    default = "connector.tar.gz"
+    type = string
+}

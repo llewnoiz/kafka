@@ -12,7 +12,8 @@ locals {
   tfstate_bucket = var.tfstate_bucket
   terraform_state_lock = var.terraform_state_lock
   tfstate_key = var.tfstate_key
-
+  connector_external_url = var.connector_external_url
+  connector = var.connector
   tags = {
     Name: "송현민-msk",
     resource: "msk",
