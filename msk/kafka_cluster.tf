@@ -22,31 +22,31 @@ module "msk_cluster" {
 
   encryption_in_transit_client_broker = "TLS"
   encryption_in_transit_in_cluster    = true
-  broker_node_connectivity_info = {
-    public_access = { type = local.public_access }
-  }
+  # broker_node_connectivity_info = {
+  #   public_access = { type = local.public_access }
+  # }
   configuration_name        = "${local.name}-configuration"
   configuration_description = "${local.name} configuration"
   configuration_server_properties = {
     "auto.create.topics.enable" = true
     "delete.topic.enable"       = true    
-    "default.replication.factor"=3
-    "min.insync.replicas"=2
-    "num.io.threads"=8
-    "num.network.threads"=5
-    "num.partitions"=1
-    "num.replica.fetchers"=2
-    "replica.lag.time.max.ms"=30000
-    "socket.receive.buffer.bytes"=102400
-    "socket.request.max.bytes"=104857600
-    "socket.send.buffer.bytes"=102400
-    "unclean.leader.election.enable"=true
-    "zookeeper.session.timeout.ms"=18000
-    # "allow.everyone.if.no.acl.found" = false
+    "allow.everyone.if.no.acl.found"=false
+    # "default.replication.factor"=3
+    # "min.insync.replicas"=2
+    # "num.io.threads"=8
+    # "num.network.threads"=5
+    # "num.partitions"=1
+    # "num.replica.fetchers"=2
+    # "replica.lag.time.max.ms"=30000
+    # "socket.receive.buffer.bytes"=102400
+    # "socket.request.max.bytes"=104857600
+    # "socket.send.buffer.bytes"=102400
+    # "unclean.leader.election.enable"=true
+    # "zookeeper.session.timeout.ms"=18000
   }
 
-  # create_scram_secret_association          = true
-  # scram_secret_association_secret_arn_list = [for x in aws_secretsmanager_secret.this : x.arn]
+  create_scram_secret_association          = true
+  scram_secret_association_secret_arn_list = [for x in aws_secretsmanager_secret.this : x.arn]
 
   tags = local.tags
 

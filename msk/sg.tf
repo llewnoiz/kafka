@@ -13,7 +13,7 @@ module "security_group" {
     "kafka-broker-tls-tcp",
     "kafka-broker-tls-public-tcp",
     "kafka-jmx-exporter-tcp",
-    "kafka-node-exporter-tcp"
+    "kafka-node-exporter-tcp",
   ]  
 
     # kafka-broker-tcp                   = [9092, 9092, "tcp", "Kafka PLAINTEXT enable broker 0.8.2+"]
@@ -25,6 +25,24 @@ module "security_group" {
     # kafka-broker-sasl-iam-public-tcp   = [9198, 9198, "tcp", "Kafka SASL/IAM Public access control enabled (MSK specific)"]
     # kafka-jmx-exporter-tcp             = [11001, 11001, "tcp", "Kafka JMX Exporter"]
     # kafka-node-exporter-tcp            = [11002, 11002, "tcp", "Kafka Node Exporter"]
+  egress_rules = [ "all-all" ]
+  tags = local.tags
+}
+
+
+module "bastion_security_group" {
+  source  = "./modules/terraform-aws-security-group"
+  # version = "~> 5.0"
+
+  name        = local.name
+  description = "Security group for Bastion ${local.name}"
+  vpc_id      = module.vpc.vpc_id
+
+  # ingress_cidr_blocks = module.vpc.public_subnets_cidr_blocks
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_rules = [
+    "ssh-tcp"
+  ]  
   egress_rules = [ "all-all" ]
   tags = local.tags
 }

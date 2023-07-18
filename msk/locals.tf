@@ -16,8 +16,8 @@ locals {
   connector_external_url = var.connector_external_url
   connector = var.connector
   tags = {
-    Name: "송현민-msk",
-    resource: "msk",
+    Name: "송현민-msk-2",
+    resource: "msk-2",
     purpose : "amano korea proj test",
     team : "SK MFG서비스",
     enddate: "23/07/21"

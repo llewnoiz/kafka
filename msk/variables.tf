@@ -14,7 +14,7 @@ variable "profile" {
 }
 
 variable "kafa_cluster_prefix" {
-    default = "amanoko"
+    default = "amano-ko"
     type = string
 }
 

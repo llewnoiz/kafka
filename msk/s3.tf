@@ -26,17 +26,17 @@ module "s3_bucket" {
 resource "aws_s3_object" "debezium_connector" {
   bucket = module.s3_bucket.s3_bucket_id
   key    = local.connector
-  source = local.connector
+  # source = local.connector
 
-  depends_on = [
-    null_resource.debezium_connector
-  ]
+  # depends_on = [
+  #   null_resource.debezium_connector
+  # ]
 }
 
-resource "null_resource" "debezium_connector" {
-  provisioner "local-exec" {
-    command = <<-EOT
-      wget ${local.connector_external_url} -O ${local.connector} 
-    EOT
-  }
-}
+# resource "null_resource" "debezium_connector" {
+#   provisioner "local-exec" {
+#     command = <<-EOT
+#       wget ${local.connector_external_url} -O ${local.connector} 
+#     EOT
+#   }
+# }
