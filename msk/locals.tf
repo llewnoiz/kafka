@@ -9,6 +9,7 @@ locals {
 
   secrets = ["producer", "consumer"]
   public_access = var.public_access #"SERVICE_PROVIDED_EIPS" #DISABLED
+  instance_type = var.instance_type
   tfstate_bucket = var.tfstate_bucket
   terraform_state_lock = var.terraform_state_lock
   tfstate_key = var.tfstate_key

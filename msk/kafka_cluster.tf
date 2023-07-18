@@ -13,7 +13,7 @@ module "msk_cluster" {
 
   # broker_node_client_subnets  = module.vpc.public_subnets
   broker_node_client_subnets  = module.vpc.private_subnets
-  broker_node_instance_type   = "kafka.t3.small"
+  broker_node_instance_type   = local.instance_type
   broker_node_security_groups = [module.security_group.security_group_id]
 
   client_authentication = {
@@ -29,7 +29,19 @@ module "msk_cluster" {
   configuration_description = "${local.name} configuration"
   configuration_server_properties = {
     "auto.create.topics.enable" = true
-    "delete.topic.enable"       = true
+    "delete.topic.enable"       = true    
+    "default.replication.factor"=3
+    "min.insync.replicas"=2
+    "num.io.threads"=8
+    "num.network.threads"=5
+    "num.partitions"=1
+    "num.replica.fetchers"=2
+    "replica.lag.time.max.ms"=30000
+    "socket.receive.buffer.bytes"=102400
+    "socket.request.max.bytes"=104857600
+    "socket.send.buffer.bytes"=102400
+    "unclean.leader.election.enable"=true
+    "zookeeper.session.timeout.ms"=18000
     # "allow.everyone.if.no.acl.found" = false
   }
 
