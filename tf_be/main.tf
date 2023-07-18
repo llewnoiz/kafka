@@ -9,6 +9,7 @@ provider "aws" {
 resource "aws_s3_bucket" "tfstate" {
   bucket = local.tfstate_bucket
 
+  force_destroy = true
   tags = local.tags
 }
 
