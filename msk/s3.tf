@@ -1,14 +1,13 @@
 module "s3_bucket" {
-  source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.0"
+  source  = "./modules/terraform-aws-s3-bucket"
 
   bucket_prefix = "${local.name}"
   acl           = "private"
-
+  control_object_ownership = true
+  object_ownership = "BucketOwnerPreferred"
   versioning = {
     enabled = true
-  }
-  object_ownership = "BucketOwnerPreferred"
+  }  
   # Allow deletion of non-empty bucket for testing
   force_destroy = true
 

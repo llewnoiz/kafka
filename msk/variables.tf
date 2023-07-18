@@ -34,7 +34,7 @@ variable "tfstate_key" {
 }
 
 variable "public_access" {
-    default = "SERVICE_PROVIDED_EIPS" #DISABLED
+    default = "DISABLED"#"SERVICE_PROVIDED_EIPS" #"DISABLED"
     type = string
 }
 
@@ -45,5 +45,10 @@ variable "connector_external_url" {
 
 variable "connector" {
     default = "connector.tar.gz"
+    type = string
+}
+
+variable "instance_type"  {
+    default = "kafka.t3.small"   
     type = string
 }
