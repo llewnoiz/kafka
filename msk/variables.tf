@@ -52,3 +52,8 @@ variable "instance_type"  {
     default = "kafka.t3.small"   
     type = string
 }
+
+variable "key_pair_name" {
+     default = "mks_key_pair"   
+    type = string 
+}

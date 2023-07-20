@@ -16,12 +16,20 @@ module "msk_cluster" {
   broker_node_instance_type   = local.instance_type
   broker_node_security_groups = [module.security_group.security_group_id]
 
-  client_authentication = {
-    sasl = { scram = true }
-  }
 
-  encryption_in_transit_client_broker = "TLS"
-  encryption_in_transit_in_cluster    = true
+  # client_authentication = {
+  #   unauthenticated = true
+  # }
+  # client_authentication {
+  #     unauthenticated = true   
+  # sasl {
+    #     iam   = false 
+    #     scram = false 
+    #   }    
+  # }
+
+  encryption_in_transit_client_broker = "TLS_PLAINTEXT"
+  # encryption_in_transit_in_cluster    = true
   # broker_node_connectivity_info = {
   #   public_access = { type = local.public_access }
   # }
@@ -30,7 +38,7 @@ module "msk_cluster" {
   configuration_server_properties = {
     "auto.create.topics.enable" = true
     "delete.topic.enable"       = true    
-    "allow.everyone.if.no.acl.found"=false
+    # "allow.everyone.if.no.acl.found"=false
     # "default.replication.factor"=3
     # "min.insync.replicas"=2
     # "num.io.threads"=8
@@ -45,8 +53,8 @@ module "msk_cluster" {
     # "zookeeper.session.timeout.ms"=18000
   }
 
-  create_scram_secret_association          = true
-  scram_secret_association_secret_arn_list = [for x in aws_secretsmanager_secret.this : x.arn]
+  # create_scram_secret_association          = true
+  # scram_secret_association_secret_arn_list = [for x in aws_secretsmanager_secret.this : x.arn]
 
   tags = local.tags
 

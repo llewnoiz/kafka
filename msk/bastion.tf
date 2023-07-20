@@ -11,6 +11,12 @@ mkdir /home/ubuntu/build
 cd /home/ubuntu
 
 sudo apt update -y
+sudo apt-get install openjdk-11-jdk -y
+echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> ~/.bashrc
+echo "export PATH=$PATH:$JAVA_HOME/bin" >> ~/.bashrc
+source ~/.bashrc
+
+wget https://archive.apache.org/dist/kafka/2.8.1/kafka_2.12-2.8.1.tgz /home/ubuntu
 EOF
 
 depend_on = [local_sensitive_file.private_key_pem]
@@ -37,8 +43,12 @@ resource "aws_instance" "web" {
   instance_type = "t3.micro"
 
   security_groups = [ module.bastion_security_group.security_group_id ]
-  subnet_id = module.vpc.private_subnets[0]
+  subnet_id = module.vpc.public_subnets[0]
   associate_public_ip_address = true
   key_name = aws_key_pair.key_pair.key_name
   tags = local.tags
+
+  lifecycle {
+    ignore_changes = [ security_groups ]
+  }
 }
