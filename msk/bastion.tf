@@ -58,9 +58,13 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  instance_type = "t3.medium"
   user_data = local.instance-userdata
   
+  root_block_device {
+    volume_size = 100
+  }
+
   security_groups = [ module.bastion_security_group.security_group_id ]
   subnet_id = module.vpc.public_subnets[0]
   associate_public_ip_address = true

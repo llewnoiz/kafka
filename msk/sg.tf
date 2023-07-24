@@ -39,9 +39,10 @@ module "bastion_security_group" {
   name        = local.name
   description = "Security group for Bastion ${local.name}"
   vpc_id      = module.vpc.vpc_id
-
+  
   # ingress_cidr_blocks = module.vpc.public_subnets_cidr_blocks
   ingress_cidr_blocks = ["0.0.0.0/0"]
+  
   ingress_rules = [
     "ssh-tcp",
     "mssql-tcp",

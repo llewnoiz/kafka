@@ -16,23 +16,17 @@ module "msk_cluster" {
   broker_node_instance_type   = local.instance_type
   broker_node_security_groups = [module.security_group.security_group_id]
 
+  encryption_in_transit_client_broker = "TLS_PLAINTEXT"#"TLS" #"TLS_PLAINTEXT"
+  encryption_in_transit_in_cluster    = true
 
-  # client_authentication = {
-  #   unauthenticated = true
-  # }
   # client_authentication {
-  #     unauthenticated = true   
-  # sasl {
-    #     iam   = false 
-    #     scram = false 
-    #   }    
+  #   sasl { 
+  #     scram = true 
+  #   }    
   # }
-
-  encryption_in_transit_client_broker = "TLS_PLAINTEXT"
-  # encryption_in_transit_in_cluster    = true
-  # broker_node_connectivity_info = {
-  #   public_access = { type = local.public_access }
-  # }
+  broker_node_connectivity_info = {
+    public_access = { type = local.public_access }
+  }
   configuration_name        = "${local.name}-configuration"
   configuration_description = "${local.name} configuration"
   configuration_server_properties = {
