@@ -47,6 +47,7 @@ module "bastion_security_group" {
     "ssh-tcp",
     "mssql-tcp",
     "mssql-udp",
+    "mysql-tcp",    
     "http-8080-tcp"
   ]  
   egress_rules = [ "all-all" ]
