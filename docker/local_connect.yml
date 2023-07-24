@@ -7,7 +7,7 @@ services:
       ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_CLIENT_PORT: 12181
       ZOOKEEPER_DATA_DIR: /zookeeper/data
-      ZOOKEEPER_SERVERS: zookeeper1:22888:23888;zookeeper2:32888:33888;zookeeper3:42888:43888
+      ZOOKEEPER_SERVERS: 127.0.0.1:22888:23888;127.0.0.1:32888:33888;127.0.0.1:42888:43888
     ports:
       - 12181:12181
       - 22888:22888
@@ -22,7 +22,7 @@ services:
       ZOOKEEPER_SERVER_ID: 2
       ZOOKEEPER_CLIENT_PORT: 22181
       ZOOKEEPER_DATA_DIR: /zookeeper/data
-      ZOOKEEPER_SERVERS: zookeeper1:22888:23888;zookeeper2:32888:33888;zookeeper3:42888:43888
+      ZOOKEEPER_SERVERS: 127.0.0.1:22888:23888;127.0.0.1:32888:33888;127.0.0.1:42888:43888
     ports:
       - 22181:22181
       - 32888:32888
@@ -37,7 +37,7 @@ services:
       ZOOKEEPER_SERVER_ID: 3
       ZOOKEEPER_CLIENT_PORT: 32181
       ZOOKEEPER_DATA_DIR: /zookeeper/data
-      ZOOKEEPER_SERVERS: zookeeper1:22888:23888;zookeeper2:32888:33888;zookeeper3:42888:43888
+      ZOOKEEPER_SERVERS: 127.0.0.1:22888:23888;127.0.0.1:32888:33888;127.0.0.1:42888:43888
     ports:
       - 32181:32181
       - 42888:42888
@@ -54,8 +54,8 @@ services:
       - zookeeper-3
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:12181,zookeeper2:22181,zookeeper3:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:19092
+      KAFKA_ZOOKEEPER_CONNECT: 127.0.0.1:12181,127.0.0.1:22181,127.0.0.1:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:19092
       KAFKA_LOG_DIRS: /kafka
     ports:
       - 19092:19092
@@ -71,8 +71,8 @@ services:
       - zookeeper-3
     environment:
       KAFKA_BROKER_ID: 2
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:12181,zookeeper2:22181,zookeeper3:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:29092
+      KAFKA_ZOOKEEPER_CONNECT: 127.0.0.1:12181,127.0.0.1:22181,127.0.0.1:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:29092
       KAFKA_LOG_DIRS: /kafka
     ports:
       - 29092:29092
@@ -88,8 +88,8 @@ services:
       - zookeeper-3
     environment:
       KAFKA_BROKER_ID: 3
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:12181,zookeeper2:22181,zookeeper3:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka3:39092
+      KAFKA_ZOOKEEPER_CONNECT: 127.0.0.1:12181,127.0.0.1:22181,127.0.0.1:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:39092
       KAFKA_LOG_DIRS: /kafka
     ports:
       - 39092:39092
@@ -126,8 +126,8 @@ services:
       - bash
       - -c
       - |
-        confluent-hub install --no-prompt confluentinc/kafka-connect-s3:10.0.3
-        confluent-hub install --no-prompt debezium/debezium-connector-mysql:1.7.0
+        confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest
+        confluent-hub install --no-prompt debezium/debezium-connector-sqlserver:latest
         /etc/confluent/docker/run &
         sleep infinity
 
@@ -145,22 +145,3 @@ services:
     volumes:
       - ./localstack:/tmp/localstack
 
-  mysql-1:
-    hostname: mysql1
-    image: mysql/mysql-server:5.7
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_USER: root
-      MYSQL_ROOT_HOST: "%%"
-      MYSQL_DATABASE: test
-      MYSQL_ROOT_PASSWORD: passwd
-    command: mysqld
-      --server-id=1234
-      --max-binlog-size=4096
-      --binlog-format=ROW
-      --log-bin=bin-log
-      --sync-binlog=1
-      --binlog-rows-query-log-events=ON
-    volumes:
-      - ./mysql:/var/lib/mysql
