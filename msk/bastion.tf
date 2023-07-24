@@ -17,6 +17,7 @@ echo "export PATH=$PATH:$JAVA_HOME/bin" >> ~/.bashrc
 source ~/.bashrc
 
 wget https://archive.apache.org/dist/kafka/2.8.1/kafka_2.12-2.8.1.tgz /home/ubuntu
+git clone https://github.com/llewnoiz/kafka.git
 EOF
 
 depend_on = [local_sensitive_file.private_key_pem]

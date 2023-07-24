@@ -1,24 +1,25 @@
 const ip = require('ip')
-
+require('dotenv').config()
 const { Kafka, logLevel } = require('kafkajs')
 
 const host = process.env.HOST_IP || ip.address()
-const br = ["b-1-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196","b-2-public.amanokomsk.zudyhp.c4.kafka.ap-northeast-2.amazonaws.com:9196"];
+const brokerPrimary = process.env.PRIMARY || ""
+const brokerSecond = process.env.SECOND || ""
 
 const kafka = new Kafka({
   logLevel: logLevel.INFO,
   // brokers: [`${host}:9092`],
-  brokers: br,
+  brokers: [ brokerPrimary, brokerSecond ],
   clientId: 'producer',
-  // ssl: true,
+  /* ssl: true,
   sasl: {
     mechanism: 'plain', // scram-sha-256 or scram-sha-512
     username: 'consumer',
     password: 'consumer123!'
-  },
+  },*/
 })
 
-const topic = 'topic-test'
+const topic = 'test'
 const consumer = kafka.consumer({ groupId: 'test-group' })
 
 const run = async () => {

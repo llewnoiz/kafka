@@ -22,6 +22,6 @@ locals {
     resource: "msk-2",
     purpose : "amano korea proj test",
     team : "SK MFG서비스",
-    enddate: "23/07/21"
+    enddate: "23/07/28"
   }
 }
