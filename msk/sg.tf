@@ -46,7 +46,7 @@ module "bastion_security_group" {
     "ssh-tcp",
     "mssql-tcp",
     "mssql-udp",
-    "http-8080"
+    "http-8080-tcp"
   ]  
   egress_rules = [ "all-all" ]
   tags = local.tags
