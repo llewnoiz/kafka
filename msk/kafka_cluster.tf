@@ -19,12 +19,10 @@ module "msk_cluster" {
   encryption_in_transit_client_broker = "TLS_PLAINTEXT"#"TLS" #"TLS_PLAINTEXT"
   encryption_in_transit_in_cluster    = true
 
-  # client_authentication {
-  #   sasl { 
-  #     scram = true 
-  #   }    
-  # }
-  
+  broker_node_storage_info = {
+    ebs_storage_info = { volume_size = 100 }
+  }
+
   client_authentication = {
     sasl = { scram = true }
   }
