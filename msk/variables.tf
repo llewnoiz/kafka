@@ -34,7 +34,7 @@ variable "tfstate_key" {
 }
 
 variable "public_access" {
-    default = "DISABLED"#"SERVICE_PROVIDED_EIPS" #"DISABLED"
+    default = "SERVICE_PROVIDED_EIPS"#"SERVICE_PROVIDED_EIPS" #"DISABLED"
     type = string
 }
 

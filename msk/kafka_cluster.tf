@@ -16,7 +16,7 @@ module "msk_cluster" {
   broker_node_instance_type   = local.instance_type
   broker_node_security_groups = [module.security_group.security_group_id]
 
-  encryption_in_transit_client_broker = "TLS_PLAINTEXT"#"TLS" #"TLS_PLAINTEXT"
+  encryption_in_transit_client_broker = "TLS"#"TLS" #"TLS_PLAINTEXT"
   encryption_in_transit_in_cluster    = true
 
   broker_node_storage_info = {
