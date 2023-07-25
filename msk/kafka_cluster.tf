@@ -24,7 +24,11 @@ module "msk_cluster" {
   }
 
   client_authentication = {
-    sasl = { scram = true }
+    unauthenticated = false
+    sasl = { 
+      scram = true 
+      iam = true 
+    }
   }
   broker_node_connectivity_info = {
     public_access = { type = local.public_access }
@@ -34,9 +38,9 @@ module "msk_cluster" {
   configuration_server_properties = {
     "auto.create.topics.enable" = true
     "delete.topic.enable"       = true    
-    "allow.everyone.if.no.acl.found"=false
+    "allow.everyone.if.no.acl.found"=true
     # "default.replication.factor"=3
-    # "min.insync.replicas"=2
+    # "min.insync.replicas"=2s
     # "num.io.threads"=8
     # "num.network.threads"=5
     # "num.partitions"=1
