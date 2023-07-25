@@ -34,7 +34,7 @@ variable "tfstate_key" {
 }
 
 variable "public_access" {
-    default = "SERVICE_PROVIDED_EIPS"#"SERVICE_PROVIDED_EIPS" #"DISABLED"
+    default = "DISABLED"#"SERVICE_PROVIDED_EIPS" #"DISABLED"
     type = string
 }
 
@@ -50,6 +50,11 @@ variable "connector" {
 
 variable "instance_type"  {
     default = "kafka.t3.small"   
+    type = string
+}
+
+variable "bastion_instance_type" {
+    default = "t3.medium"   
     type = string
 }
 

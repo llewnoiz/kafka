@@ -58,7 +58,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.medium"
+  instance_type = local.bastion_instance_type
   user_data = local.instance-userdata
   
   root_block_device {

@@ -15,7 +15,7 @@ locals {
   tfstate_key = var.tfstate_key
   connector_external_url = var.connector_external_url
   connector = var.connector
-
+  bastion_instance_type = var.bastion_instance_type
   key_pair_name = var.key_pair_name
   tags = {
     Name: "송현민-msk-2",
