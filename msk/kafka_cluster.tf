@@ -20,7 +20,7 @@ module "msk_cluster" {
   encryption_in_transit_in_cluster    = true
 
   broker_node_storage_info = {
-    ebs_storage_info = { volume_size = 100 }
+    ebs_storage_info = { volume_size = 30 }
   }
 
   client_authentication = {
