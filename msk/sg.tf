@@ -16,8 +16,15 @@ module "security_group" {
     "kafka-broker-sasl-scram-public-tcp",
     "kafka-jmx-exporter-tcp",
     "kafka-node-exporter-tcp",
+    "zookeeper-2181-tcp",
+    "zookeeper-2182-tls-tcp"
   ]  
 
+    # zookeeper-2181-tcp     = [2181, 2181, "tcp", "Zookeeper"]
+    # zookeeper-2182-tls-tcp = [2182, 2182, "tcp", "Zookeeper TLS (MSK specific)"]
+    # zookeeper-2888-tcp     = [2888, 2888, "tcp", "Zookeeper"]
+    # zookeeper-3888-tcp     = [3888, 3888, "tcp", "Zookeeper"]
+    # zookeeper-jmx-tcp      = [7199, 7199, "tcp", "JMX"]
     # kafka-broker-tcp                   = [9092, 9092, "tcp", "Kafka PLAINTEXT enable broker 0.8.2+"]
     # kafka-broker-tls-tcp               = [9094, 9094, "tcp", "Kafka TLS enabled broker 0.8.2+"]
     # kafka-broker-tls-public-tcp        = [9194, 9194, "tcp", "Kafka TLS Public enabled broker 0.8.2+ (MSK specific)"]

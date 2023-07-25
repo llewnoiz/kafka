@@ -38,7 +38,7 @@ module "msk_cluster" {
   configuration_server_properties = {
     "auto.create.topics.enable" = true
     "delete.topic.enable"       = true    
-    "allow.everyone.if.no.acl.found"=true
+    "allow.everyone.if.no.acl.found"=false
     # "default.replication.factor"=3
     # "min.insync.replicas"=2s
     # "num.io.threads"=8
