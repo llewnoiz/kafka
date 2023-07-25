@@ -94,3 +94,10 @@ SELECT * FROM kafka;
 
 UPDATE kafka SET phone_no='01077778888' where name='Sam';
 */
+
+
+CREATE TABLE kafka (
+    student_no INT NOT NULL IDENTITY  PRIMARY KEY,
+    name char(10) NOT NULL,
+    phone_no char(20)
+) 
