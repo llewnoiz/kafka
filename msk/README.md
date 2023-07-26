@@ -11,3 +11,5 @@ terraform apply -auto-approve
 bin/kafka-acls.sh --authorizer-properties zookeeper.connect=10.0.0.236:2181,10.0.1.55:2181,10.0.0.236:2181 --add --allow-principal "User:CN=*" --operation All --topic=*
 
 bin/kafka-acls.sh --authorizer-properties zookeeper.connect=10.0.0.236:2181,10.0.1.55:2181,10.0.0.236:2181 --add --allow-principal "User:producer" --operation All --topic=* --group=*
+
+bin/kafka-acls.sh --authorizer-properties zookeeper.connect=10.0.0.236:2181,10.0.1.55:2181,10.0.0.236:2181 --add --allow-principal "User:consumer" --operation All --topic=* --group=*
