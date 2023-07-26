@@ -16,7 +16,6 @@ echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> ~/
 echo "export PATH=$PATH:$JAVA_HOME/bin" >> ~/.bashrc
 source ~/.bashrc
 
-wget https://archive.apache.org/dist/kafka/2.8.1/kafka_2.12-2.8.1.tgz /home/ubuntu
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 echo \
@@ -35,6 +34,7 @@ nvm install 18
 
 git clone https://github.com/tchiotludo/akhq.git
 git clone https://github.com/llewnoiz/kafka.git
+git clone https://llewnoiz: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@github.com/llewnoiz/kafka-connect.git
 EOF
 
 depend_on = [local_sensitive_file.private_key_pem]

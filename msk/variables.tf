@@ -38,13 +38,14 @@ variable "public_access" {
     type = string
 }
 
-variable "connector_external_url" {
-    default = "https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/2.3.0.Final/debezium-connector-mysql-2.3.0.Final-plugin.tar.gz"
+
+variable "source_connector" {
+    default = "source"
     type = string
 }
 
-variable "connector" {
-    default = "connector.tar.gz"
+variable "sink_connector" {
+    default = "sink"
     type = string
 }
 

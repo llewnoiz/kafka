@@ -13,8 +13,8 @@ locals {
   tfstate_bucket = var.tfstate_bucket
   terraform_state_lock = var.terraform_state_lock
   tfstate_key = var.tfstate_key
-  connector_external_url = var.connector_external_url
-  connector = var.connector
+  source_connector = var.source_connector
+  sink_connector = var.sink_connector
   bastion_instance_type = var.bastion_instance_type
   key_pair_name = var.key_pair_name
   tags = {
