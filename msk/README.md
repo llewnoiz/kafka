@@ -13,3 +13,12 @@ bin/kafka-acls.sh --authorizer-properties zookeeper.connect=10.0.1.64:2181,10.0.
 bin/kafka-acls.sh --authorizer-properties zookeeper.connect=10.0.1.64:2181,10.0.1.55:2181,10.0.0.236:2181 --add --allow-principal "User:producer" --operation All --topic=* --group=*
 
 bin/kafka-acls.sh --authorizer-properties zookeeper.connect=10.0.1.64:2181,10.0.1.55:2181,10.0.0.236:2181 --add --allow-principal "User:consumer" --operation All --topic=* --group=*
+
+
+# 토픽 조회
+bin/kafka-topics.sh --list --zookeeper 10.0.1.64:2181,10.0.1.55:2181,10.0.0.236:2181
+
+# 토픽 삭제
+bin/kafka-topics.sh --delete --zookeeper 10.0.1.64:2181,10.0.1.55:2181,10.0.0.236:2181 --topic connect-configs
+bin/kafka-topics.sh --delete --zookeeper 10.0.1.64:2181,10.0.1.55:2181,10.0.0.236:2181 --topic connect-offsets
+bin/kafka-topics.sh --delete --zookeeper 10.0.1.64:2181,10.0.1.55:2181,10.0.0.236:2181 --topic connect-status
