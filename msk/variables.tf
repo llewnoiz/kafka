@@ -40,12 +40,12 @@ variable "public_access" {
 
 
 variable "source_connector" {
-    default = "source"
+    default = "debezium-connector-sqlserver-2.3.0.Final.jar"
     type = string
 }
 
 variable "sink_connector" {
-    default = "sink"
+    default = "mssql-jdbc-8.4.1.jre8.jar"
     type = string
 }
 
