@@ -60,6 +60,11 @@ variable "manage_master_user_password" {
 }
 
 variable "rds_password" {
-    default = "Bespin1!@"
+    default = "Bespin1!2"
+    type = string
+}
+
+variable "monitoring_role_name" {
+    default = "amano-rds-monitoring-role"
     type = string
 }

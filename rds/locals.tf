@@ -12,6 +12,7 @@ locals {
   tfstate_key = var.tfstate_key
   rds_subnet_ids= var.rds_subnet_ids
   database_subnet_group = var.database_subnet_group
+  monitoring_role_name = var.monitoring_role_name
   vpc_id = var.vpc_id
   password = var.rds_password
   manage_master_user_password = var.manage_master_user_password

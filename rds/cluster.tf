@@ -19,6 +19,7 @@ module "db" {
   port     = 3306
   password = local.password
   multi_az               = true
+  create_db_subnet_group = true
   db_subnet_group_name   = local.database_subnet_group
   vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_ids = local.rds_subnet_ids  
@@ -26,6 +27,7 @@ module "db" {
   backup_window                   = "03:00-06:00"
   enabled_cloudwatch_logs_exports = ["general"]
   create_cloudwatch_log_group     = true
+  monitoring_role_name = local.monitoring_role_name
   blue_green_update = {
     enabled = true
   }
