@@ -10,9 +10,11 @@ locals {
   tfstate_bucket = var.tfstate_bucket
   terraform_state_lock = var.terraform_state_lock
   tfstate_key = var.tfstate_key
-  
+  rds_subnet_ids= var.rds_subnet_ids
   database_subnet_group = var.database_subnet_group
   vpc_id = var.vpc_id
+  password = var.rds_password
+  manage_master_user_password = var.manage_master_user_password
 
   tags = {
     Name: "송현민-msk-2",

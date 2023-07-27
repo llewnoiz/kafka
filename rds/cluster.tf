@@ -1,5 +1,5 @@
 module "db" {
-  source = "../modules/terraform-aws-rds"
+  source = "./modules/terraform-aws-rds"
 
   identifier = local.name
 
@@ -13,14 +13,15 @@ module "db" {
   allocated_storage     = 20
   max_allocated_storage = 100
 
-  db_name  = "completeMysql"
-  username = "complete_mysql"
+  db_name  = "mskMysql"
+  username = "msk_mysql"
+  manage_master_user_password = local.manage_master_user_password
   port     = 3306
-
+  password = local.password
   multi_az               = true
-  db_subnet_group_name   = module.vpc.database_subnet_group
+  db_subnet_group_name   = local.database_subnet_group
   vpc_security_group_ids = [module.security_group.security_group_id]
-
+  subnet_ids = local.rds_subnet_ids  
   maintenance_window              = "Mon:00:00-Mon:03:00"
   backup_window                   = "03:00-06:00"
   enabled_cloudwatch_logs_exports = ["general"]

@@ -1,9 +1,9 @@
 module "security_group" {
-  source  = "../modules/terraform-aws-modules/security-group"
+  source  = "./modules/terraform-aws-security-group"
 
   name        = local.name
   description = "MSK MySQL security group"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = local.vpc_id
 
   # ingress
   ingress_with_cidr_blocks = [
