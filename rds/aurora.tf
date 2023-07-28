@@ -3,7 +3,7 @@ module "aurora" {
 
   name            = local.name
   engine          = "aurora-mysql"
-  engine_version  = "8.0"
+  engine_version  = "5.7"
   master_username = "root"
   master_password = "Bespin1234"
   instances = {
@@ -23,7 +23,9 @@ module "aurora" {
   }
 
   vpc_id               = local.vpc_id
+  create_db_subnet_group = true
   db_subnet_group_name = local.database_subnet_group
+  subnets = local.rds_subnet_ids
   security_group_rules = {
     vpc_ingress = {
       cidr_blocks = ["0.0.0.0/0"]
@@ -35,7 +37,7 @@ module "aurora" {
 
   create_db_cluster_parameter_group      = true
   db_cluster_parameter_group_name        = "${local.name}-cluster-params"
-  db_cluster_parameter_group_family      = "aurora-mysql8.0"
+  db_cluster_parameter_group_family      = "aurora-mysql5.7"
   db_cluster_parameter_group_description = "${local.name} cluster parameter group"
   db_cluster_parameter_group_parameters = [
     {
@@ -79,7 +81,7 @@ module "aurora" {
 
   create_db_parameter_group      = true
   db_parameter_group_name        = "${local.name}-group-params"
-  db_parameter_group_family      = "aurora-mysql8.0"
+  db_parameter_group_family      = "aurora-mysql5.7"
   db_parameter_group_description = "${local.name} DB parameter group"
   db_parameter_group_parameters = [
     {
