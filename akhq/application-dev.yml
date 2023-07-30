@@ -1,0 +1,20 @@
+micronaut:
+  server:
+    cors:
+      enabled: true
+      configurations:
+        all:
+          allowedOrigins:
+            - http://127.0.0.1:3000
+
+akhq:
+  connections:
+    local:
+      properties:
+        bootstrap.servers: "b-2-public.amanokomsk.1k4f5y.c4.kafka.ap-northeast-2.amazonaws.com:9196,b-1-public.amanokomsk.1k4f5y.c4.kafka.ap-northeast-2.amazonaws.com:9196"
+        security.protocol: SASL_SSL
+        sasl.mechanism: SCRAM-SHA-512
+        sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="producer" password="producer123!";
+      connect:
+        - name: "connect"
+          url: "http://127.0.0.1:8443"
